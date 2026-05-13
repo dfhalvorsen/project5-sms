@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms and Conditions — Project 5 SMS Alerts</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #222; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 0.3rem; }
+  h2 { margin-top: 2rem; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.85rem; color: #666; }
+  a { color: #0a58ca; }
+</style>
+</head>
+<body>
+
+<h1>Terms and Conditions — Project 5 SMS Alerts</h1>
+<p><em>Last updated: May 13, 2026</em></p>
+
+<p>These Terms and Conditions ("Terms") govern the use of the SMS alerting functionality of the Project 5 system ("the System"). By configuring the System to send SMS alerts to a phone number, the operator agrees to these Terms.</p>
+
+<h2>1. Description of service</h2>
+<p>The System is a private operational monitoring tool. When configured, it sends SMS alert notifications to the system owner regarding events such as market data streaming failures, process crashes, authentication failures, and recovery failures.</p>
+
+<h2>2. Eligibility and intended recipient</h2>
+<p>SMS alerts are intended solely for the individual who deploys, configures, and operates the System on their own private server. The recipient must be the operator of the System and the owner of the mobile phone number entered into the configuration file. The System is not intended for use in sending messages to any other party.</p>
+
+<h2>3. Consent</h2>
+<p>By entering a mobile phone number into the <code>sms_alerts</code> section of the System's <code>config.yaml</code> file and enabling the SMS feature, the operator provides explicit consent to receive SMS alert messages from the System.</p>
+
+<h2>4. Message frequency</h2>
+<p>Message frequency varies based on system events. Typically, the System sends between 0 and 10 messages per day. Frequency may be higher during incidents or extended outages.</p>
+
+<h2>5. Message and data rates</h2>
+<p>Message and data rates may apply. The recipient is responsible for any charges imposed by their mobile carrier in connection with receiving SMS messages.</p>
+
+<h2>6. Opt-out</h2>
+<p>The recipient may opt out of SMS alerts at any time by replying STOP to any message received from the System. The recipient may also opt out by removing the phone number from <code>config.yaml</code>, or by setting the <code>enabled</code> flag to <code>false</code>, and restarting the System.</p>
+
+<h2>7. Help</h2>
+<p>For assistance, the recipient may reply HELP to any message received from the System.</p>
+
+<h2>8. No warranty</h2>
+<p>The System and its SMS alerts are provided "as is" without warranty of any kind, express or implied. The operator acknowledges that SMS delivery depends on third-party carriers and may be delayed, undelivered, or otherwise affected by factors outside the System's control. The System should not be relied upon as the sole means of monitoring critical systems.</p>
+
+<h2>9. Limitation of liability</h2>
+<p>To the maximum extent permitted by law, the System and its developer shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of, or inability to use, the SMS alerting functionality, including but not limited to missed, delayed, or undelivered messages.</p>
+
+<h2>10. Carrier disclaimer</h2>
+<p>Mobile carriers are not liable for delayed or undelivered messages.</p>
+
+<h2>11. Privacy</h2>
+<p>Use of the SMS alerting functionality is also subject to the <a href="privacy.html">Privacy Policy</a>.</p>
+
+<h2>12. Changes to these Terms</h2>
+<p>These Terms may be updated from time to time. The "Last updated" date at the top of this page reflects the most recent revision.</p>
+
+<h2>13. Related documents</h2>
+<ul>
+  <li><a href="optin.html">SMS Opt-In Evidence</a></li>
+  <li><a href="privacy.html">Privacy Policy</a></li>
+</ul>
+
+<footer>
+These Terms and Conditions apply solely to the SMS alerting functionality of the Project 5 system.
+</footer>
+
+</body>
+</html>

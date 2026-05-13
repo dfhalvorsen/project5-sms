@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SMS Opt-In Evidence — Project 5</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #222; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 0.3rem; }
+  h2 { margin-top: 2rem; }
+  pre { background: #f4f4f4; border: 1px solid #ddd; padding: 1rem; overflow-x: auto;
+        font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.9rem; line-height: 1.4; }
+  .disclosure { background: #fffbe6; border-left: 4px solid #f0c040; padding: 0.75rem 1rem; margin: 1.5rem 0; }
+  ul { padding-left: 1.4rem; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.85rem; color: #666; }
+  a { color: #0a58ca; }
+</style>
+</head>
+<body>
+
+<h1>SMS Opt-In Evidence — Project 5 System Alerts</h1>
+
+<p><strong>Purpose:</strong> This page documents the opt-in mechanism by which the system owner consents to receive SMS operational alerts from the Project 5 market data monitoring system. It is provided so that The Campaign Registry (TCR) and carrier reviewers can verify the consent workflow described in the corresponding A2P 10DLC campaign submission.</p>
+
+<h2>Who receives messages</h2>
+<p>SMS alerts are delivered exclusively to the system owner who deploys and configures the Project 5 software on their own private server. No messages are sent to the general public, customers, or third parties. The recipient and the operator of the system are the same individual.</p>
+
+<h2>How consent is collected</h2>
+<p>The system owner provides explicit, active consent by manually entering their own mobile phone number into the <code>sms_alerts</code> section of the <code>config.yaml</code> configuration file during initial setup of the system. The configuration file contains consent language adjacent to the phone number field that clearly states what the user is agreeing to, message frequency, that message and data rates may apply, and how to opt out.</p>
+
+<p>The phone number field is empty by default. The user must take an affirmative action — typing their number into the file and saving it — for any SMS to be sent. There is no pre-filled value and no default recipient.</p>
+
+<h2>config.yaml — opt-in section (verbatim)</h2>
+
+<p>The following is the exact content of the <code>sms_alerts</code> section of <code>config.yaml</code> as shipped with the system. The consent language appears as comments directly above the input field:</p>
+
+<pre>sms_alerts:
+  # ---------------------------------------------------------------------------
+  # SMS ALERT CONSENT
+  #
+  # By entering your mobile phone number below, you consent to receive SMS
+  # alerts from this Project 5 system regarding:
+  #   - Market data streaming failures (no data received within threshold)
+  #   - Process crashes (non-zero exit codes, unhandled exceptions)
+  #   - Authentication failures (expired Schwab refresh tokens, etc.)
+  #   - Recovery failures (WebSocket reconnect or REST retry exhaustion)
+  #
+  # Message frequency varies based on system events; typically 0 to 10
+  # messages per day.
+  #
+  # Message and data rates may apply.
+  #
+  # You may opt out at any time by replying STOP to any alert message.
+  # Reply HELP for help.
+  #
+  # Leaving this field blank disables SMS alerts entirely. No messages will
+  # be sent unless a phone number is explicitly entered here.
+  # ---------------------------------------------------------------------------
+  recipient_phone: ""        # Enter your mobile number in E.164 format, e.g. "+15551234567"
+  enabled: false             # Set to true after entering your phone number above
+</pre>
+
+<div class="disclosure">
+<strong>Required disclosures shown to the user at the point of opt-in:</strong>
+<ul>
+  <li>Identification of the sender (Project 5 system, operated by the user themselves)</li>
+  <li>Description of the message categories the user will receive</li>
+  <li>Message frequency disclosure (typically 0–10 messages per day, varies)</li>
+  <li>"Message and data rates may apply" disclosure</li>
+  <li>Opt-out instructions (reply STOP)</li>
+  <li>Help instructions (reply HELP)</li>
+  <li>Affirmative action required (field is empty by default; user must enter number AND set <code>enabled: true</code>)</li>
+</ul>
+</div>
+
+<h2>Opt-out mechanism</h2>
+<p>Every SMS sent by the system includes the text "Reply STOP to opt out." The user may also opt out at any time by:</p>
+<ul>
+  <li>Replying STOP to any message received (handled by the carrier and the messaging provider).</li>
+  <li>Removing their phone number from <code>config.yaml</code>, or setting <code>enabled: false</code>, and restarting the system.</li>
+</ul>
+
+<h2>Sample alert messages</h2>
+<p>All outbound messages identify the system by name and include opt-out language:</p>
+<ul>
+  <li>"Project 5 Alert: No data received for 5 minutes. Check streaming connection. Reply STOP to opt out."</li>
+  <li>"Project 5 Alert: Process exited with non-zero exit code or unhandled exception. Reply STOP to opt out."</li>
+  <li>"Project 5 Alert: WebSocket reconnect or REST retry exhausted all attempts. Reply STOP to opt out."</li>
+  <li>"Project 5 Alert: Schwab refresh token expired; manual browser flow required. Reply STOP to opt out."</li>
+</ul>
+
+<h2>Related documents</h2>
+<ul>
+  <li><a href="privacy.html">Privacy Policy</a></li>
+  <li><a href="terms.html">Terms and Conditions</a></li>
+</ul>
+
+<footer>
+This page is published solely to provide A2P 10DLC campaign reviewers with publicly accessible evidence of the SMS opt-in workflow for the Project 5 system.
+</footer>
+
+</body>
+</html>
